@@ -1,0 +1,32 @@
+﻿@using PostCheckBox.Models
+@model Grupo
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+
+<form action="" method="POST" >
+    <fieldset>
+        <legend>Grupo</legend>
+        <p>Nome: <input type="text" name="Nome" id="Nome" value="@Model.Nome"/></p>
+        
+        
+          @foreach (var permissaoGrupo in (ICollection<PermissoesAssociadasAoGrupo>)ViewBag.Permissoes)
+                {
+                    <p>
+                        <input type="checkbox" 
+                               name="permissoesSelecionadas" 
+                               value="@permissaoGrupo.Permissao.PermissaoId" 
+                             @(Html.Raw(permissaoGrupo.Associado ? "checked=\"checked\"" : "")) />
+                            @permissaoGrupo.Permissao.PermissaoId @permissaoGrupo.Permissao.Descricao
+                    </p>
+                }
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+</form>
+
